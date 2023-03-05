@@ -16,3 +16,5 @@ app.post('/api/login', logIn); // Log in to an account
 app.listen(PORT, () => {
   console.log(`Listening on port http://127.0.0.1:${PORT}`);
 });
+
+console.log("Hello");
