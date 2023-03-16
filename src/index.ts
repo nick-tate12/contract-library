@@ -12,9 +12,8 @@ const { PORT } = process.env;
 app.get('/api/users', getAllUsers);
 app.post('/api/users', registerUser); // Create an account
 app.post('/api/login', logIn); // Log in to an account
+app.post('/api/');
 
 app.listen(PORT, () => {
   console.log(`Listening on port http://127.0.0.1:${PORT}`);
 });
-
-console.log("Hello");

@@ -1,19 +1,19 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
-export class User {
+export class Farmer {
   @PrimaryGeneratedColumn('uuid')
-  userId: string;
+  farmerID: string;
 
   @Column({ unique: true })
   email: string;
 
   @Column({ unique: true })
-  passwordHash: string;
+  phone: string;
+
+  @Column({ unique: true })
+  primaryKey: string; // (name)
 
   @Column({ default: false })
-  verifiedEmail: boolean;
-
-  @Column({ default: 0 })
-  profileViews: number;
+  phoneCheck: boolean;
 }
