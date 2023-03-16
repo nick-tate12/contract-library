@@ -11,7 +11,7 @@ import {
 } from '../models/UserModel';
 
 async function registerUser(req: Request, res: Response): Promise<void> {
-  const { email, password } = req.body as NewUserRequest;
+  const { email, password } = req.body as NewUserRequest; // requests for a new user
 
   // Hash the user's password
   const passwordHash = await argon2.hash(password);
@@ -37,7 +37,7 @@ async function logIn(req: Request, res: Response): Promise<void> {
     return;
   }
 
-  const { passwordHash } = user;
+  const { passwordHash } = user; // not sure what this does
 
   if (!(await argon2.verify(passwordHash, password))) {
     res.sendStatus(404); // 404 Not Found - user with email/pass doesn't exist
