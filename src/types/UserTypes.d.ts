@@ -3,6 +3,10 @@ type NewUserRequest = {
   password: string;
 };
 
+type UserIdParam = {
+  userId: string;
+};
+
 type Marketer = {
   id: number; // PK
   name: string;
@@ -11,53 +15,8 @@ type Marketer = {
   // Check phone is not null or email is not null
 };
 
-type Mill = {
-  id: number; // PK
-  name: string;
-  phone: number;
-  email: string;
-  // Check phone is not null or email is not null
-};
-
-type Buyer = {
-  id: number; // PK
-  name: string;
-  phone: number;
-  email: string;
-  // Check phone is not null or email is not null
-};
-
-type Farmer = {
-  id: number; // PK
-  name: string;
-  phone: number;
-  email: string;
-  // Check phone is not null or email is not null
-};
-
-type Crop = {
-  id: number; // PK
-  name: string;
-  yield: number; // >= 0.00
-  price: number; // >= 0.00
-  status: string;
-};
-
-type Rice = {
-  id: number; // PK
-  variety: string; // not null
-  // Constraint fkeyID Foreign Key (id)
-  // References Crop(id) Deferrable initially Immediate
-};
-
-type Contract = {
-  id: number; // PK
-  marketer: Marketer;
-  mill: Mill;
-  farmer: Farmer;
-  crop: Crop; // PK
-  // FK marketer, mill, farmer, crop
-};
+// I am not sure where i am going to put these
+// relationships just yet.
 
 type Prefers = {
   farmer: Farmer;

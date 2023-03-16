@@ -14,9 +14,6 @@ export class User {
   @Column({ default: false })
   verifiedEmail: boolean;
 
-  @Column()
-  name: string;
-
   @Column({ default: 0 })
   profileViews: number;
 }

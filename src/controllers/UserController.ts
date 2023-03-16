@@ -1,7 +1,14 @@
 import argon2 from 'argon2';
 import { Request, Response } from 'express';
 import { parseDatabaseError } from '../utils/db-utils';
-import { addUser, getUserByEmail, allUserData } from '../models/UserModel';
+import {
+  addUser,
+  getUserByEmail,
+  allUserData,
+  getUserById,
+  incrementProfileViews,
+  updateEmailAddress,
+} from '../models/UserModel';
 
 async function registerUser(req: Request, res: Response): Promise<void> {
   const { email, password } = req.body as NewUserRequest;
@@ -46,4 +53,38 @@ async function getAllUsers(req: Request, res: Response): Promise<void> {
   res.json(users);
 }
 
-export { registerUser, logIn, getAllUsers };
+async function getUserProfileData(req: Request, res: Response): Promise<void> {
+  const { userId } = req.params as UserIdParam;
+  // Get the user account
+  let user = await getUserById(userId);
+  if (!user) {
+    res.sendStatus(404); // 404 Not Found
+    return;
+  }
+  // Now update their profile views
+  user = await incrementProfileViews(user);
+  res.json(user); // Send back the user's data
+}
+
+async function updateUserEmail(req: Request, res: Response): Promise<void> {
+  const { userId } = req.params as UserIdParam;
+  const { email } = req.body as { email: string };
+  const user = await getUserById(userId);
+  if (!user) {
+    res.sendStatus(404); // 404 Not Found
+    return;
+  }
+  // Now update their profile views
+  try {
+    await updateEmailAddress(userId, email);
+    // user.email = email; // this would update the email for user object
+    res.sendStatus(200); // 404 Not Found
+    // res.json(user); // Send back the user's data, won't be updated unless line above
+  } catch (err) {
+    console.error(err);
+    const databaseErrorMessage = parseDatabaseError(err);
+    res.status(500).json(databaseErrorMessage);
+  }
+}
+
+export { registerUser, logIn, getAllUsers, getUserProfileData, updateUserEmail };
