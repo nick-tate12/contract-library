@@ -37,7 +37,6 @@ app.get('/api/buyers', getAllBuyers); // List of all buyers + personal info
 app.get('/api/buyers', getAllCrops); // List of all crops + info + Rice info
 
 // app.get('/api/users/:userId', getUserProfileData);
-app.post('/api/');
 
 app.listen(PORT, () => {
   console.log(`Listening on port http://127.0.0.1:${PORT}`);
