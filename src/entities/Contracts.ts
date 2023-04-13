@@ -1,19 +1,22 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { CreateDateColumn, Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 export class Contract {
   @PrimaryGeneratedColumn('uuid')
-  contractID: number;
+  contractID: string;
 
-  @Column({ unique: true })
-  mill: string;
+  @Column()
+  marketerId: string;
 
-  @Column({ unique: true })
-  marketer: string;
+  @Column()
+  millId: string;
 
-  @Column({ unique: true })
-  farmer: string; // (name)
+  @Column()
+  farmerId: string;
 
-  @Column({ default: false })
-  cropID: number;
+  @Column()
+  cropId: string;
+
+  @CreateDateColumn()
+  createdOn: Date;
 }

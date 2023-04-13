@@ -1,8 +1,9 @@
 type Contract = {
-  id: number; // PK
-  marketer: Marketer;
-  mill: Mill;
-  farmer: Farmer;
-  crop: Crop; // PK
+  contractId: string; // PK
+  marketerId: string;
+  millId: string;
+  farmerId: string;
+  cropId: string; // PK
+  createdOn: Date;
   // FK marketer, mill, farmer, crop
 };

@@ -1,19 +1,33 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Relation, Check, Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Farmer } from './Farmer';
+import { Marketer } from './Marketer';
+import { Mill } from './Mill';
 
 @Entity()
+@Check(`"price" >= 0`)
+@Check(`"yield" >= 0`)
 export class Crop {
   @PrimaryGeneratedColumn('uuid')
-  cropID: number;
+  cropId: string;
 
-  @Column({ default: false })
-  yield: boolean; // Might not be boolean.
+  @Column({ nullable: false })
+  name: string;
 
-  @Column({ default: false })
-  price: boolean; // Might not be boolean.
+  @Column({ default: 0, type: 'real' })
+  yield: number;
 
-  @Column({ default: false })
-  primaryKey: string; // (id)
+  @Column({ default: 0, type: 'real' })
+  price: number;
 
   @Column({ unique: true })
   status: string;
+
+  @OneToMany(() => Mill, (mill) => mill.stores)
+  storedBy: Relation<Mill>;
+
+  @OneToMany(() => Marketer, (marketer) => marketer.samples)
+  sampledBy: Relation<Marketer>;
+
+  @OneToMany(() => Farmer, (farmer) => farmer.produces)
+  producedBy: Relation<Farmer>;
 }

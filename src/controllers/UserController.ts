@@ -6,7 +6,7 @@ import {
   getUserByEmail,
   allUserData,
   getUserById,
-  incrementProfileViews,
+  // incrementProfileViews,
   updateEmailAddress,
 } from '../models/UserModel';
 
@@ -56,13 +56,13 @@ async function getAllUsers(req: Request, res: Response): Promise<void> {
 async function getUserProfileData(req: Request, res: Response): Promise<void> {
   const { userId } = req.params as UserIdParam;
   // Get the user account
-  let user = await getUserById(userId);
+  const user = await getUserById(userId);
   if (!user) {
     res.sendStatus(404); // 404 Not Found
     return;
   }
   // Now update their profile views
-  user = await incrementProfileViews(user);
+  // user = await incrementProfileViews(user);
   res.json(user); // Send back the user's data
 }
 

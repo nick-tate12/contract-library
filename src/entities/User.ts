@@ -10,10 +10,4 @@ export class User {
 
   @Column({ unique: true })
   passwordHash: string;
-
-  @Column({ default: false })
-  verifiedEmail: boolean;
-
-  @Column({ default: 0 })
-  profileViews: number;
 }

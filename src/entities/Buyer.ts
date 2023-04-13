@@ -1,19 +1,20 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, Relation } from 'typeorm';
+import { Mill } from './Mill';
 
 @Entity()
 export class Buyer {
   @PrimaryGeneratedColumn('uuid')
-  worker: string;
+  buyerId: string;
 
-  @Column({ unique: true })
+  @Column({ nullable: false })
+  name: string;
+
+  @Column({ unique: true, nullable: false })
   email: string;
 
-  @Column({ unique: true })
+  @Column({ unique: true, nullable: false })
   phone: string;
 
-  @Column({ unique: true })
-  primaryKey: string; // (worker)
-
-  @Column({ default: false })
-  phoneCheck: boolean;
+  @ManyToOne(() => Mill, (mill) => mill.buyers)
+  worksFor: Relation<Mill>;
 }

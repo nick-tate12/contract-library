@@ -1,7 +1,7 @@
 type Buyer = {
-  id: number; // PK
+  buyerId: string; // PK
   name: string;
-  phone: number;
   email: string;
+  phone: string;
   // Check phone is not null or email is not null
 };

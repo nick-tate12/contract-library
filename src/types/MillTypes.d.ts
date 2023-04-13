@@ -1,5 +1,5 @@
 type Mill = {
-  id: number; // PK
+  millId: string; // PK
   name: string;
   phone: number;
   email: string;

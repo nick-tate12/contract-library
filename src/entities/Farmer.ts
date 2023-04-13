@@ -1,19 +1,28 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, Relation, OneToMany } from 'typeorm';
+import { Marketer } from './Marketer';
+import { Crop } from './Crop';
+import { Mill } from './Mill';
 
 @Entity()
 export class Farmer {
   @PrimaryGeneratedColumn('uuid')
-  farmerID: string;
+  farmerId: string;
+
+  @Column({ nullable: false })
+  name: string;
 
   @Column({ unique: true })
   email: string;
 
-  @Column({ unique: true })
+  @Column({ unique: true, nullable: false })
   phone: string;
 
-  @Column({ unique: true })
-  primaryKey: string; // (name)
+  @ManyToOne(() => Mill, (mill) => mill.preferred)
+  prefers: Relation<Mill>;
 
-  @Column({ default: false })
-  phoneCheck: boolean;
+  @OneToMany(() => Crop, (crop) => crop.producedBy)
+  produces: Relation<Crop>[];
+
+  @ManyToOne(() => Marketer, (marketer) => marketer.buysFrom)
+  sellsTo: Relation<Marketer>;
 }

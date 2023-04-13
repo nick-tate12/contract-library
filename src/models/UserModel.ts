@@ -26,12 +26,12 @@ async function getAllUsers(): Promise<User[]> {
   return userRepository.find(); // TODO: some reason await is removed.
 }
 
-async function getAllUnverifiedUsers(): Promise<User[]> {
-  return userRepository.find({
-    select: { email: true, userId: true },
-    where: { verifiedEmail: false },
-  });
-}
+// async function getAllUnverifiedUsers(): Promise<User[]> {
+//   return userRepository.find({
+//     select: { email: true, userId: true },
+//     where: { verifiedEmail: false },
+//   });
+// }
 
 async function getUserByEmail(email: string): Promise<User | null> {
   const user = await userRepository.findOne({ where: { email } });
@@ -43,8 +43,6 @@ async function getUserById(userId: string): Promise<User | null> {
     select: {
       userId: true,
       email: true,
-      profileViews: true,
-      verifiedEmail: true,
     },
     where: { userId },
   });
@@ -71,17 +69,17 @@ async function getUsersByViews(minViews: number): Promise<User[]> {
   return viralUsers;
 }
 
-async function incrementProfileViews(userData: User): Promise<User> {
-  const updatedUser = userData;
-  updatedUser.profileViews += 1;
-  await userRepository
-    .createQueryBuilder()
-    .update(User)
-    .set({ profileViews: updatedUser.profileViews })
-    .where({ userId: updatedUser.userId })
-    .execute();
-  return updatedUser;
-}
+// async function incrementProfileViews(userData: User): Promise<User> {
+//   const updatedUser = userData;
+//   updatedUser.profileViews += 1;
+//   await userRepository
+//     .createQueryBuilder()
+//     .update(User)
+//     .set({ profileViews: updatedUser.profileViews })
+//     .where({ userId: updatedUser.userId })
+//     .execute();
+//   return updatedUser;
+// }
 
 async function updateEmailAddress(userId: string, newEmail: string): Promise<void> {
   await userRepository
@@ -96,11 +94,11 @@ export {
   addUser,
   allUserData,
   getAllUsers,
-  getAllUnverifiedUsers,
+  // getAllUnverifiedUsers,
   getUserByEmail,
   getUserById,
   getViralUsers,
   getUsersByViews,
-  incrementProfileViews,
+  // incrementProfileViews,
   updateEmailAddress,
 };

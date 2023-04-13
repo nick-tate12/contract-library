@@ -1,7 +1,7 @@
 type Farmer = {
-  id: number; // PK
+  farmerId: string; // PK
   name: string;
-  phone: number;
   email: string;
+  phone: number;
   // Check phone is not null or email is not null
 };

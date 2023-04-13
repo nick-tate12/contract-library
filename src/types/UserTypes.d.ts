@@ -8,10 +8,10 @@ type UserIdParam = {
 };
 
 type Marketer = {
-  id: number; // PK
+  marketerId: number; // PK
   name: string;
-  phone: number;
   email: string;
+  phone: number;
   // Check phone is not null or email is not null
 };
 

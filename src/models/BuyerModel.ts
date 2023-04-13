@@ -1,16 +1,20 @@
+import { Buyer } from '../entities/Buyer';
 import { AppDataSource } from '../dataSource';
-import { User } from '../entities/User';
 
-export const buyerRepository = AppDataSource.getRepository(User); // will be Buyer instead of User
+export const buyerRepository = AppDataSource.getRepository(Buyer); // will be Buyer instead of User
 
-// do not know params yet
-async function addBuyer(): Promise<void> {
-  console.log('This needs to be implemented');
+async function addBuyer(name: string, phone: string, email: string): Promise<Buyer> {
+  let buyer = new Buyer();
+  buyer.email = email;
+  buyer.phone = phone;
+  buyer.name = name;
+
+  buyer = await buyerRepository.save(buyer);
+  return buyer;
 }
 
-async function getBuyers(): Promise<User[]> {
-  // We use no criteria so this will get all users
-  return buyerRepository.find(); // TODO: some reason await is removed.
+async function getBuyers(): Promise<Buyer[]> {
+  return buyerRepository.find();
 }
 
 export { addBuyer, getBuyers };
