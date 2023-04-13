@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, Relation } from 'typeorm';
+import { Mill } from './Mill';
 
 @Entity()
 export class Buyer {
@@ -16,4 +17,8 @@ export class Buyer {
 
   @Column({ default: false })
   phoneCheck: boolean;
+
+  @ManyToOne (() => Mill, (mill) => mill.buyer)
+  mill : Relation<Mill>[];
+
 }

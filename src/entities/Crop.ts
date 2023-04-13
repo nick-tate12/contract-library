@@ -1,4 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, Relation, ManyToOne, ManyToMany } from 'typeorm';
+import { Mill } from './Mill';
+import { Farmer } from './Farmer';
+import { Marketer } from './Marketer';
+import { Contract } from './Contract';
 
 @Entity()
 export class Crop {
@@ -16,4 +20,17 @@ export class Crop {
 
   @Column({ unique: true })
   status: string;
+
+  @OneToMany (() => Mill, (mill) => mill.crop)
+  mill: Relation<Mill>[];
+
+  @OneToMany (() => Farmer, (farmer) => farmer.crop)
+  farmer: Relation<Farmer>[];
+
+  @ManyToOne (() => Marketer, (marketer) => marketer.crop)
+  marketer: Relation<Marketer>[];
+
+  @ManyToMany (() => Contract, (contract) => contract.marketer)
+  contract: Relation<Contract>[];
+
 }
