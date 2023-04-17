@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, Relation, OneToMany } from 'typeorm';
-import { Marketer } from './Marketer';
+import { Employee } from './Employee';
 import { Crop } from './Crop';
 import { Mill } from './Mill';
 
@@ -23,6 +23,6 @@ export class Farmer {
   @OneToMany(() => Crop, (crop) => crop.producedBy)
   produces: Relation<Crop>[];
 
-  @ManyToOne(() => Marketer, (marketer) => marketer.buysFrom)
-  sellsTo: Relation<Marketer>;
+  @ManyToOne(() => Employee, (marketer) => marketer.buysFrom)
+  sellsTo: Relation<Employee>;
 }

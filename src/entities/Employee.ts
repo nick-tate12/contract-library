@@ -4,7 +4,7 @@ import { Crop } from './Crop';
 import { Mill } from './Mill';
 
 @Entity()
-export class Marketer {
+export class Employee {
   @PrimaryGeneratedColumn('uuid')
   marketerID: string;
 

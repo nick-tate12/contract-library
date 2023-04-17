@@ -1,6 +1,6 @@
 import { Relation, Check, Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Farmer } from './Farmer';
-import { Marketer } from './Marketer';
+import { Employee } from './Employee';
 import { Mill } from './Mill';
 
 @Entity()
@@ -25,8 +25,8 @@ export class Crop {
   @OneToMany(() => Mill, (mill) => mill.stores)
   storedBy: Relation<Mill>;
 
-  @OneToMany(() => Marketer, (marketer) => marketer.samples)
-  sampledBy: Relation<Marketer>;
+  @OneToMany(() => Employee, (marketer) => marketer.samples)
+  sampledBy: Relation<Employee>;
 
   @OneToMany(() => Farmer, (farmer) => farmer.produces)
   producedBy: Relation<Farmer>;
