@@ -24,4 +24,9 @@ async function getCrops(): Promise<Crop[]> {
   return cropRepository.find();
 }
 
-export { addCrop, getCrops };
+async function getCropById(cropId: string): Promise<Crop | null> {
+  const user = await cropRepository.findOne({ where: { cropId } });
+  return user;
+}
+
+export { addCrop, getCrops, getCropById };

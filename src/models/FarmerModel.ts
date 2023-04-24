@@ -18,4 +18,20 @@ async function getFarmers(): Promise<Farmer[]> {
   return farmerRepository.find();
 }
 
-export { addFarmer, getFarmers };
+async function getFarmerById(farmerId: string): Promise<Farmer | null> {
+  const farmer = await farmerRepository.findOne({
+    select: {
+      farmerId: true,
+      email: true,
+    },
+    where: { farmerId },
+  });
+  return farmer;
+}
+
+async function getFarmerByEmail(email: string): Promise<Farmer | null> {
+  const user = await farmerRepository.findOne({ where: { email } });
+  return user;
+}
+
+export { addFarmer, getFarmers, getFarmerByEmail, getFarmerById };

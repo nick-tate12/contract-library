@@ -17,4 +17,20 @@ async function getBuyers(): Promise<Buyer[]> {
   return buyerRepository.find();
 }
 
-export { addBuyer, getBuyers };
+async function getBuyerById(buyerId: string): Promise<Buyer | null> {
+  const buyer = await buyerRepository.findOne({
+    select: {
+      buyerId: true,
+      email: true,
+    },
+    where: { buyerId },
+  });
+  return buyer;
+}
+
+async function getBuyerByEmail(email: string): Promise<Buyer | null> {
+  const buyer = await buyerRepository.findOne({ where: { email } });
+  return buyer;
+}
+
+export { addBuyer, getBuyers, getBuyerById, getBuyerByEmail };

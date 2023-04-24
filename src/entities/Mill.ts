@@ -7,7 +7,7 @@ import { Buyer } from './Buyer';
 @Entity()
 export class Mill {
   @PrimaryGeneratedColumn('uuid')
-  millID: string;
+  millId: string;
 
   @Column({ nullable: false })
   name: string;
