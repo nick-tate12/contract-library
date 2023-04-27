@@ -11,14 +11,11 @@ import { addNewBuyer, getAllBuyers } from './controllers/BuyerController';
 import { addNewCrop, getAllCrops } from './controllers/CropController';
 
 const app: Express = express();
-app.set('view engine', 'ejs');
 const { PORT, COOKIE_SECRET } = process.env;
 
 const SQLiteStore = connectSqlite3(session);
+app.set('view engine', 'ejs');
 const store = new SQLiteStore({ db: 'session.sqlite' });
-
-app.use(express.static('public', { extensions: ['html'] }));
-
 app.use(
   session({
     store,
@@ -29,8 +26,9 @@ app.use(
     saveUninitialized: false,
   })
 );
-app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public', { extensions: ['html'] }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 // the 'user' will be 'marketers' for Delta Grain Marketing
 app.post('/api/users', registerUser); // Create an account
