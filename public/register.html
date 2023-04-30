@@ -1,23 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full bg-[#ECECEC]"></html>
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/output.css" />
   <title>Register | Delta Grain Marketing</title>
 </head>
-<body>
-  <form action="/api/users" method="post">
-    <h1>Register</h1>
-    <div>
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required />
-    </div>
-    <div>
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required />
-    </div>
 
-    <button>Submit</button>
+<body class="h-full">
+  <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <h1 class="mb-5 text-center text-3xl font-bold leading-9 text-mainGreen">Welcome to</h1>
+    <img class="mx-auto h-20 w-max" src="./img/logo.png" alt="Your Company">
+    <div class="grid col-span-3 mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
+      <img class="col-start-1 self-end justify-self-start h-8 w-fit" src="./img/wheat.png" alt="Your Company">
+      <h2 class="col-start-2 mt-2 text-center text-2xl font-bold leading-9 tracking-tight text-mainGreen">Create your account</h2>
+      <img class="col-start-3 self-end justify-self-end h-8 w-fit" src="./img/wheat.png" alt="Your Company">
+    </div>
+  
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form class="space-y-6" action="/api/users" method="POST">
+        <div>
+          <label for="name" class="block text-sm font-medium leading-6 text-mainGreen">Name</label>
+          <div class="mt-2">
+            <input id="name" name="name" type="text" autocomplete="text" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-mainYellow placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-mainGreen sm:text-sm sm:leading-6">
+          </div>
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium leading-6 text-mainGreen">Email address</label>
+          <div class="mt-2">
+            <input id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-mainYellow placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-mainGreen sm:text-sm sm:leading-6">
+          </div>
+        </div>
+
+        <div>
+          <label for="phone" class="block text-sm font-medium leading-6 text-mainGreen">Phone Number</label>
+          <div class="mt-2">
+            <input id="phone" name="phone" type="tel" autocomplete="tel" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-mainYellow placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-mainGreen sm:text-sm sm:leading-6">
+          </div>
+        </div>
+  
+        <div>
+          <div class="flex items-center justify-between">
+            <label for="password" class="block text-sm font-medium leading-6 text-mainGreen">Password</label>
+          </div>
+          <div class="mt-2">
+            <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-mainYellow placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-mainGreen sm:text-sm sm:leading-6">
+          </div>
+        </div>
+  
+        <div>
+          <button type="submit" class="flex w-full justify-center rounded-md bg-mainGreen px-3 py-1.5 text-sm font-semibold leading-6 text-mainYellow shadow-sm hover:bg-mainYellow hover:text-mainGreen focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mainGreen">Create account</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- <h1 class="text-cyan-400">If this is cyan then tailwind works</h1>
+  <h1>Delta Grain Marketing</h1>
+
+  <div><a href="/register">Create an Account</a></div>
+  <div><a href="/login">Login</a></div> -->
+  <!-- <div><a href="/books">View Books</a></div> -->
 </body>
+
 </html>
