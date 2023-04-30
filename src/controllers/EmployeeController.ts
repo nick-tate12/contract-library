@@ -18,7 +18,7 @@ async function registerEmployee(req: Request, res: Response): Promise<void> {
     // Store the hash instead of their actual password
     const newEmployee = await addEmployee(name, email, phone, passwordHash);
     console.log(newEmployee);
-    res.sendStatus(201);
+    res.redirect('/index');
   } catch (err) {
     console.error(err);
     const databaseErrorMessage = parseDatabaseError(err);
