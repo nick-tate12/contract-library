@@ -1,21 +1,25 @@
 import { CreateDateColumn, Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Employee } from './Employee';
+import { Mill } from './Mill';
+import { Farmer } from './Farmer';
+import { Crop } from './Crop';
 
 @Entity()
 export class Contract {
   @PrimaryGeneratedColumn('uuid')
   contractID: string;
 
-  @Column()
-  marketerId: string;
+  @Column(() => Employee)
+  employee: Employee | null;
 
-  @Column()
-  millId: string;
+  @Column(() => Mill)
+  mill: Mill | null;
 
-  @Column()
-  farmerId: string;
+  @Column(() => Farmer)
+  farmer: Farmer | null;
 
-  @Column()
-  cropId: string;
+  @Column(() => Crop)
+  crop: Crop | null;
 
   @CreateDateColumn()
   createdOn: Date;

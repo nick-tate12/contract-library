@@ -20,13 +20,7 @@ async function getMills(): Promise<Mill[]> {
 }
 
 async function getMillById(millId: string): Promise<Mill | null> {
-  const mill = await millRepository.findOne({
-    select: {
-      millId: true,
-      email: true,
-    },
-    where: { millId },
-  });
+  const mill = await millRepository.findOne({ where: { millId } });
   return mill;
 }
 
