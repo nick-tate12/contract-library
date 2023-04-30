@@ -3,12 +3,7 @@ import { getCrops, addCrop } from '../models/CropModel';
 import { parseDatabaseError } from '../utils/db-utils';
 
 async function addNewCrop(req: Request, res: Response): Promise<void> {
-  const { name, price, cropYield, status } = req.body as {
-    name: string;
-    price: number;
-    cropYield: number;
-    status: string;
-  };
+  const { name, price, cropYield, status } = req.body as CropRequest;
 
   try {
     const newCrop = addCrop(name, price, cropYield, status);

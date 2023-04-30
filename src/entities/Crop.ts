@@ -4,8 +4,7 @@ import { Employee } from './Employee';
 import { Mill } from './Mill';
 
 @Entity()
-@Check(`"price" >= 0`)
-@Check(`"yield" >= 0`)
+@Check(`"price" >= 0 AND "yield" >= 0`)
 export class Crop {
   @PrimaryGeneratedColumn('uuid')
   cropId: string;

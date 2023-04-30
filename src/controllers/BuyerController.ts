@@ -3,7 +3,7 @@ import { getBuyers, addBuyer } from '../models/BuyerModel';
 import { parseDatabaseError } from '../utils/db-utils';
 
 async function addNewBuyer(req: Request, res: Response): Promise<void> {
-  const { name, email, phone } = req.body as { name: string; email: string; phone: string };
+  const { name, email, phone } = req.body as BuyerRequest;
 
   try {
     const newBuyer = await addBuyer(name, email, phone);

@@ -3,7 +3,7 @@ import { getFarmers, addFarmer } from '../models/FarmerModel';
 import { parseDatabaseError } from '../utils/db-utils';
 
 async function addNewFarmer(req: Request, res: Response): Promise<void> {
-  const { name, email, phone } = req.body as { name: string; email: string; phone: string };
+  const { name, email, phone } = req.body as FarmerRequest;
 
   try {
     const newFarmer = addFarmer(name, email, phone);

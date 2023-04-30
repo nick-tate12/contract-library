@@ -6,9 +6,9 @@ type Crop = {
   status: string;
 };
 
-type Rice = {
-  id: number; // PK
-  variety: string; // not null
-  // Constraint fkeyID Foreign Key (id)
-  // References Crop(id) Deferrable initially Immediate
+type CropRequest = {
+  name: string;
+  price: number;
+  cropYield: number;
+  status: string;
 };

@@ -3,12 +3,7 @@ import { getContracts, addContract } from '../models/ContractModel';
 import { parseDatabaseError } from '../utils/db-utils';
 
 async function addNewContract(req: Request, res: Response): Promise<void> {
-  const { marketerId, millId, farmerId, cropId } = req.body as {
-    marketerId: string;
-    millId: string;
-    farmerId: string;
-    cropId: string;
-  };
+  const { marketerId, millId, farmerId, cropId } = req.body as ContractRequest;
   try {
     const newContract = await addContract(marketerId, millId, farmerId, cropId);
     console.log(newContract);

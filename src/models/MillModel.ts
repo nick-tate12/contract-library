@@ -4,8 +4,14 @@ import { Mill } from '../entities/Mill';
 export const millRepository = AppDataSource.getRepository(Mill);
 
 // do not know params yet
-async function addMill(): Promise<void> {
-  console.log('This needs to be implemented');
+async function addMill(name: string, phone: string, email: string): Promise<Mill> {
+  let mill = new Mill();
+  mill.name = name;
+  mill.phone = phone;
+  mill.email = email;
+
+  mill = await millRepository.save(mill);
+  return mill;
 }
 
 async function getMills(): Promise<Mill[]> {

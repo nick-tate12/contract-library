@@ -7,3 +7,10 @@ type Contract = {
   createdOn: Date;
   // FK marketer, mill, farmer, crop
 };
+
+type ContractRequest = {
+  marketerId: string;
+  millId: string;
+  farmerId: string;
+  cropId: string;
+};

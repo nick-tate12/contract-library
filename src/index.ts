@@ -3,7 +3,7 @@ import 'express-async-errors'; // Enable default error handling for async errors
 import express, { Express } from 'express';
 import session from 'express-session';
 import connectSqlite3 from 'connect-sqlite3';
-import { registerUser, logIn, getAllUsers, updateUserEmail } from './controllers/UserController';
+import { registerEmployee, logIn, getAllEmployees } from './controllers/EmployeeController';
 import { addNewContract, getAllContracts } from './controllers/ContractController';
 import { addNewFarmer, getAllFarmers } from './controllers/FarmerController';
 import { addNewMill, getAllMills } from './controllers/MillController';
@@ -31,10 +31,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // the 'user' will be 'marketers' for Delta Grain Marketing
-app.post('/api/users', registerUser); // Create an account
+app.post('/api/users', registerEmployee); // Create an account
 app.post('/api/login', logIn); // Log in to an account
-app.get('/api/users', getAllUsers); // List all Marketers
-app.post('/api/users/:userId/email', updateUserEmail);
+app.get('/api/users', getAllEmployees); // List all Marketers
 
 // will want a search feature for every single entity
 // need: getById, getByEmail, getByPhone, getByName

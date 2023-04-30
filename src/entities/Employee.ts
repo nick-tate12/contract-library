@@ -1,4 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, Relation, OneToMany } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToMany,
+  Relation,
+  OneToMany,
+  JoinTable,
+} from 'typeorm';
 import { Farmer } from './Farmer';
 import { Crop } from './Crop';
 import { Mill } from './Mill';
@@ -17,7 +25,11 @@ export class Employee {
   @Column({ unique: true, nullable: false })
   phone: string;
 
+  @Column({ unique: true })
+  passwordHash: string;
+
   @ManyToMany(() => Mill, (mills) => mills.tradesWith)
+  @JoinTable()
   tradesWith: Relation<Mill>[];
 
   @OneToMany(() => Crop, (crop) => crop.sampledBy)
