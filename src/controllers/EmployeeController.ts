@@ -31,18 +31,27 @@ async function logIn(req: Request, res: Response): Promise<void> {
   const employee = await getEmployeeByEmail(email);
 
   if (!employee) {
-    res.sendStatus(404); // 404 Not Found - email doesn't exist
+    res.redirect('/index'); // 404 Not Found - email doesn't exist
     return;
   }
 
-  const { passwordHash } = employee; // not sure what this does
+  const { passwordHash } = employee;
 
   if (!(await argon2.verify(passwordHash, password))) {
-    res.sendStatus(404); // 404 Not Found - employee with email/pass doesn't exist
+    res.redirect('/index'); // 404 Not Found - employee with email/pass doesn't exist
     return;
   }
 
-  res.sendStatus(200);
+  await req.session.clearSession();
+  req.session.authenticatedUser = {
+    userId: employee.marketerID,
+    email: employee.email,
+  };
+
+  req.session.isLoggedIn = true;
+
+  // res.sendStatus(200); Now we can redirect to another page instead of using a generic status
+  res.redirect('/homePage');
 }
 
 async function getAllEmployees(req: Request, res: Response): Promise<void> {
