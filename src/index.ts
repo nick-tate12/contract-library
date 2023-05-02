@@ -39,11 +39,11 @@ app.get('/api/users', getAllEmployees); // List all Marketers
 // need: getById, getByEmail, getByPhone, getByName
 // This will be best done by a filtering system which can
 // be a frontend or backend thing.
-app.post('/api/contracts', addNewContract); // create new contract
-app.post('/api/farmers', addNewFarmer); // create new farmer
-app.post('/api/mills', addNewMill); // create new farmer
-app.post('/api/buyers', addNewBuyer); // create new buyer
-app.post('/api/crops', addNewCrop); // create new crop (includes Rice)
+app.post('/contracts', addNewContract); // create new contract
+app.post('/farmers', addNewFarmer); // create new farmer
+app.post('/mills', addNewMill); // create new farmer
+app.post('/buyers', addNewBuyer); // create new buyer
+app.post('/crops', addNewCrop); // create new crop (includes Rice)
 
 app.get('/api/contracts', getAllContracts); // List of contracts
 app.get('/api/farmers', getAllFarmers); // List of all farmers + personal info

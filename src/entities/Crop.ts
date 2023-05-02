@@ -13,10 +13,10 @@ export class Crop {
   name: string;
 
   @Column({ default: 0, type: 'real' })
-  yield: number;
+  price: number;
 
   @Column({ default: 0, type: 'real' })
-  price: number;
+  yield: number;
 
   @Column({ unique: true })
   status: string;

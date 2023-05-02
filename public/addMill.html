@@ -4,9 +4,80 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/output.css" />
   <title>Mill Info | Delta Grain Marketing</title>
 </head>
 <body>
-  <h1>This is the Add Mill Page!</h1>
+  <header class="bg-offWhite sticky top-0">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+      <div class="flex lg:flex-1">
+        <a href="/homePage" class="-m-1.5 p-1.5">
+          <span class="sr-only">Your Company</span>
+          <img class="h-8 w-auto" src="./img/logo.png" alt="">
+        </a>
+      </div>
+      <div class="lg:flex lg:gap-x-12">
+        <a href="/addContract" class="text-sm font-semibold leading-6 text-mainGreen">Contracts</a>
+        <a href="/addFarmer" class="text-sm font-semibold leading-6 text-mainGreen">Farmers</a>
+        <a href="/addCrop" class="text-sm font-semibold leading-6 text-mainGreen">Crops</a>
+        <a href="/addMill" class="text-sm font-semibold leading-6 text-mainGreen">Mills</a>
+        <a href="/addBuyer" class="text-sm font-semibold leading-6 text-mainGreen">Buyers</a>
+      </div>
+    </nav>
+  </header>
+  <div class="p-4">
+    <div class="space-y-10 divide-y divide-gray-900/10">
+      <div class="flex flex-col gap-x-8 gap-y-8 pt-10 md:grid-cols-3">
+        <div class="px-4 sm:px-0">
+          <h2 class="text-base text-center font-semibold leading-7 text-gray-900">Mill Information</h2>
+          <p class="mt-1 text-sm text-center leading-6 text-gray-600">Fill out the form to create a new Mill that can then be mentioned in Contracts!</p>
+        </div>
+        <form action="/mills" method="POST" class="bg-offWhite shadow-sm self-center w-1/4 ring-1 ring-mainGreen sm:rounded-xl">
+          <div class="px-4 py-6 sm:p-8">
+            <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+
+              <div class="sm:col-span-6">
+                <label for="name" class="block text-sm font-medium leading-6 text-mainGreen">Name</label>
+                <div class="mt-2">
+                  <input type="text" name="name" id="name" required autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-mainYellow placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-mainGreen sm:text-sm sm:leading-6">
+                </div>
+              </div>
+
+              <div class="sm:col-span-6">
+                <label for="email" class="block text-sm font-medium leading-6 text-mainGreen">Email address</label>
+                <div class="mt-2">
+                  <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 text-mainGreen shadow-sm ring-1 ring-inset ring-mainYellow placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-mainGreen sm:text-sm sm:leading-6">
+                </div>
+              </div>
+              <!-- fix phone entering -->
+              <div class="sm:col-span-6">
+                <label for="phone" class="block text-sm font-medium leading-6 text-mainGreen">Phone Number</label>
+                <div class="mt-2">
+                  <input id="phone" name="phone" type="tel" requried autocomplete="tel" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-mainYellow placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-mainGreen sm:text-sm sm:leading-6">
+                </div>
+              </div>
+
+              <!-- <div class="sm:col-span-4">
+                <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Country</label>
+                <div class="mt-2">
+                  <select id="country" name="country" autocomplete="country-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                    <option>United States</option>
+                    <option>Canada</option>
+                    <option>Mexico</option>
+                  </select>
+                </div>
+              </div> -->
+            </div>
+          </div>
+          <div class="flex items-center justify-end gap-x-6 border-t border-mainGreen px-4 py-4 sm:px-8">
+            <button type="button" class="text-sm font-semibold leading-6 text-mainGreen">
+              <a href="/homePage">Cancel</a>
+            </button>
+            <button type="submit" class="rounded-md bg-mainYellow px-3 py-2 text-sm font-semibold text-mainGreen shadow-sm hover:bg-offWhite focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mainGreen">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

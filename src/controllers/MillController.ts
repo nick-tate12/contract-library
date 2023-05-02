@@ -6,7 +6,7 @@ async function addNewMill(req: Request, res: Response): Promise<void> {
   const { name, phone, email } = req.body as MillRequest;
 
   try {
-    const newMill = addMill(name, phone, email);
+    const newMill = await addMill(name, phone, email);
     console.log(newMill);
     res.sendStatus(201);
   } catch (err) {

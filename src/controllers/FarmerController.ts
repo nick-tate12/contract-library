@@ -6,7 +6,7 @@ async function addNewFarmer(req: Request, res: Response): Promise<void> {
   const { name, email, phone } = req.body as FarmerRequest;
 
   try {
-    const newFarmer = addFarmer(name, email, phone);
+    const newFarmer = await addFarmer(name, email, phone);
     console.log(newFarmer);
     res.sendStatus(201);
   } catch (err) {

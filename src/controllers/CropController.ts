@@ -6,7 +6,7 @@ async function addNewCrop(req: Request, res: Response): Promise<void> {
   const { name, price, cropYield, status } = req.body as CropRequest;
 
   try {
-    const newCrop = addCrop(name, price, cropYield, status);
+    const newCrop = await addCrop(name, price, cropYield, status);
     console.log(newCrop);
     res.sendStatus(201);
   } catch (err) {
