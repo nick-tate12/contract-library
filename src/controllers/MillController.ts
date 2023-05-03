@@ -18,7 +18,11 @@ async function addNewMill(req: Request, res: Response): Promise<void> {
 
 async function getAllMills(req: Request, res: Response): Promise<void> {
   const mills = await getMills();
-  res.json(mills);
+  res.render('millsPage', { mills });
 }
 
-export { addNewMill, getAllMills };
+async function renderNewMill(req: Request, res: Response): Promise<void> {
+  res.redirect('addMill');
+}
+
+export { addNewMill, getAllMills, renderNewMill };

@@ -32,41 +32,43 @@
           <h2 class="text-base text-center font-semibold leading-7 text-gray-900">Contract Information</h2>
           <p class="mt-1 text-sm text-center leading-6 text-gray-600">Fill out the form to create a new Contract!</p>
         </div>
-        <form action="/contracts" method="POST" class="bg-offWhite shadow-sm self-center w-1/4 ring-1 ring-mainGreen sm:rounded-xl">
+        <form action="/contract" method="POST" class="bg-offWhite shadow-sm self-center w-1/4 ring-1 ring-mainGreen sm:rounded-xl">
           <div class="px-4 py-6 sm:p-8">
             <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
               <div class="sm:col-span-6">
-                <label for="name" class="block text-sm font-medium leading-6 text-mainGreen">Name</label>
+                <label for="crop" class="block text-sm font-medium leading-6 text-mainGreen">Crop</label>
                 <div class="mt-2">
-                  <input type="text" name="name" id="name" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-mainYellow placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-mainGreen sm:text-sm sm:leading-6">
-                </div>
-              </div>
-
-              <div class="sm:col-span-6">
-                <label for="email" class="block text-sm font-medium leading-6 text-mainGreen">Email address</label>
-                <div class="mt-2">
-                  <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 text-mainGreen shadow-sm ring-1 ring-inset ring-mainYellow placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-mainGreen sm:text-sm sm:leading-6">
-                </div>
-              </div>
-              <!-- fix phone entering -->
-              <div class="sm:col-span-6">
-                <label for="phone" class="block text-sm font-medium leading-6 text-mainGreen">Phone Number</label>
-                <div class="mt-2">
-                  <input id="phone" name="phone" type="tel" autocomplete="tel" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-mainYellow placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-mainGreen sm:text-sm sm:leading-6">
-                </div>
-              </div>
-
-              <!-- <div class="sm:col-span-4">
-                <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Country</label>
-                <div class="mt-2">
-                  <select id="country" name="country" autocomplete="country-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                    <option>United States</option>
-                    <option>Canada</option>
-                    <option>Mexico</option>
+                  <select id="crop" name="crop" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                    <% for ( const crop of crops ) { %>
+                    <option value="<%= crop.cropId %>"><%= crop.name %></option>
+                    <% } %>
                   </select>
                 </div>
-              </div> -->
+              </div>
+
+              <div class="sm:col-span-6">
+                <label for="farmer" class="block text-sm font-medium leading-6 text-mainGreen">Farmer</label>
+                <div class="mt-2">
+                  <select id="farmer" name="farmer" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                    <% for ( const farmer of farmers ) { %>
+                    <option value="<%= farmer.farmerId %>"><%= farmer.name %></option>
+                    <% } %>
+                  </select>
+                </div>
+              </div>
+
+              <div class="sm:col-span-6">
+                <label for="mill" class="block text-sm font-medium leading-6 text-mainGreen">Mill</label>
+                <div class="mt-2">
+                  <select id="mill" name="mill" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                    <% for ( const mill of mills ) { %>
+                    <option value="<%= mill.millId %>"><%= mill.name %></option>
+                    <% } %>
+                  </select>
+                </div>
+              </div>
+
             </div>
           </div>
           <div class="flex items-center justify-end gap-x-6 border-t border-mainGreen px-4 py-4 sm:px-8">

@@ -8,6 +8,5 @@ declare module 'express-session' {
       email: string;
     };
     isLoggedIn: boolean;
-    logInTimeout: Date;
   }
 }

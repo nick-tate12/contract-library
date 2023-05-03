@@ -18,7 +18,11 @@ async function addNewBuyer(req: Request, res: Response): Promise<void> {
 
 async function getAllBuyers(req: Request, res: Response): Promise<void> {
   const buyers = await getBuyers();
-  res.json(buyers);
+  res.render('buyersPage', { buyers });
 }
 
-export { addNewBuyer, getAllBuyers };
+async function renderNewBuyer(req: Request, res: Response): Promise<void> {
+  res.redirect('addBuyer');
+}
+
+export { addNewBuyer, getAllBuyers, renderNewBuyer };

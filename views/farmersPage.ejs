@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/output.css" />
+  <title>Farmers Page | Delta Grain Marketing</title>
+</head>
+<body>
+  <header class="bg-offWhite sticky">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+      <div class="flex lg:flex-1">
+        <a href="" class="-m-1.5 p-1.5">
+          <span class="sr-only">Your Company</span>
+          <img class="h-8 w-auto" src="./img/logo.png" alt="">
+        </a>
+      </div>
+      <div class="lg:flex lg:gap-x-12">
+        <a href="/contracts" class="text-sm font-semibold leading-6 text-mainGreen">Contracts</a>
+        <a href="/farmers" class="text-sm font-semibold leading-6 text-mainGreen">Farmers</a>
+        <a href="/crops" class="text-sm font-semibold leading-6 text-mainGreen">Crops</a>
+        <a href="/mills" class="text-sm font-semibold leading-6 text-mainGreen">Mills</a>
+        <a href="/buyers" class="text-sm font-semibold leading-6 text-mainGreen">Buyers</a>
+      </div>
+    </nav>
+</header>
+<div class="px-4 sm:px-6 lg:px-8">
+    <div class="sm:flex sm:items-center">
+      <div class="sm:flex-auto">
+        <h1 class="text-base font-semibold leading-6 text-gray-900">Farmers</h1>
+        <p class="mt-2 text-sm text-gray-700">A list of all the Farmers on Contract including their name, phone number, and email.</p>
+      </div>
+      <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+        <button type="button" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+          <a href="/farmer">Add Farmer</a></button>
+      </div>
+    </div>
+    <div class="mt-8 flow-root">
+      <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+          <table class="min-w-full divide-y divide-gray-300">
+            <thead>
+              <tr>
+                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Name</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Phone Number</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Email</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              <% for (const farmer of farmers) { %>
+              <tr>
+                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0"><%= farmer.name%></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= farmer.phone%></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= farmer.email%></td>
+                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                  <a href="#" class="text-indigo-600 hover:text-indigo-900">View Contracts</a>
+                </td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

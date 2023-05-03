@@ -18,7 +18,11 @@ async function addNewFarmer(req: Request, res: Response): Promise<void> {
 
 async function getAllFarmers(req: Request, res: Response): Promise<void> {
   const farmers = await getFarmers();
-  res.json(farmers);
+  res.render('farmersPage', { farmers });
 }
 
-export { addNewFarmer, getAllFarmers };
+async function renderNewFarmer(req: Request, res: Response): Promise<void> {
+  res.redirect('addFarmer');
+}
+
+export { addNewFarmer, getAllFarmers, renderNewFarmer };

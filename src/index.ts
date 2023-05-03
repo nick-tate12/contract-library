@@ -4,11 +4,15 @@ import express, { Express } from 'express';
 import session from 'express-session';
 import connectSqlite3 from 'connect-sqlite3';
 import { registerEmployee, logIn, getAllEmployees } from './controllers/EmployeeController';
-import { addNewContract, getAllContracts } from './controllers/ContractController';
-import { addNewFarmer, getAllFarmers } from './controllers/FarmerController';
-import { addNewMill, getAllMills } from './controllers/MillController';
-import { addNewBuyer, getAllBuyers } from './controllers/BuyerController';
-import { addNewCrop, getAllCrops } from './controllers/CropController';
+import {
+  addNewContract,
+  getAllContracts,
+  getAllEntitiesForNewContract,
+} from './controllers/ContractController';
+import { addNewFarmer, getAllFarmers, renderNewFarmer } from './controllers/FarmerController';
+import { addNewMill, getAllMills, renderNewMill } from './controllers/MillController';
+import { addNewBuyer, getAllBuyers, renderNewBuyer } from './controllers/BuyerController';
+import { addNewCrop, getAllCrops, renderNewCrop } from './controllers/CropController';
 
 const app: Express = express();
 const { PORT, COOKIE_SECRET } = process.env;
@@ -32,26 +36,26 @@ app.use(express.urlencoded({ extended: false }));
 
 // the 'user' will be 'marketers' for Delta Grain Marketing
 app.post('/api/users', registerEmployee); // Create an account
-app.post('/api/login', logIn); // Log in to an account
+app.post('/home', logIn); // Log in to an account
 app.get('/api/users', getAllEmployees); // List all Marketers
 
-// will want a search feature for every single entity
-// need: getById, getByEmail, getByPhone, getByName
-// This will be best done by a filtering system which can
-// be a frontend or backend thing.
-app.post('/contracts', addNewContract); // create new contract
-app.post('/farmers', addNewFarmer); // create new farmer
-app.post('/mills', addNewMill); // create new farmer
-app.post('/buyers', addNewBuyer); // create new buyer
-app.post('/crops', addNewCrop); // create new crop (includes Rice)
+app.get('/contract', getAllEntitiesForNewContract);
+app.get('/farmer', renderNewFarmer);
+app.get('/mill', renderNewMill);
+app.get('/buyer', renderNewBuyer);
+app.get('/crop', renderNewCrop);
 
-app.get('/api/contracts', getAllContracts); // List of contracts
-app.get('/api/farmers', getAllFarmers); // List of all farmers + personal info
-app.get('/api/mills', getAllMills); // List of all mills + personal info
-app.get('/api/buyers', getAllBuyers); // List of all buyers + personal info
-app.get('/api/buyers', getAllCrops); // List of all crops + info + Rice info
+app.post('/contract', addNewContract); // create new contract
+app.post('/farmer', addNewFarmer); // create new farmer
+app.post('/mill', addNewMill); // create new farmer
+app.post('/buyer', addNewBuyer); // create new buyer
+app.post('/crop', addNewCrop); // create new crop (includes Rice)
 
-// app.get('/api/users/:userId', getUserProfileData);
+app.get('/contracts', getAllContracts); // List of contracts
+app.get('/farmers', getAllFarmers); // List of all farmers + personal info
+app.get('/mills', getAllMills); // List of all mills + personal info
+app.get('/buyers', getAllBuyers); // List of all buyers + personal info
+app.get('/crops', getAllCrops); // List of all crops + info + Rice info
 
 app.listen(PORT, () => {
   console.log(`Listening on port http://127.0.0.1:${PORT}`);

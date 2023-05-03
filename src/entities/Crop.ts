@@ -18,7 +18,7 @@ export class Crop {
   @Column({ default: 0, type: 'real' })
   yield: number;
 
-  @Column({ unique: true })
+  @Column({ nullable: true })
   status: string;
 
   @OneToMany(() => Mill, (mill) => mill.stores)

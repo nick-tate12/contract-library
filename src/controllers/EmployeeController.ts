@@ -51,13 +51,13 @@ async function logIn(req: Request, res: Response): Promise<void> {
   req.session.isLoggedIn = true;
 
   // res.sendStatus(200); Now we can redirect to another page instead of using a generic status
-  res.redirect('/homePage');
+  res.render('homePage', { marketerId: employee.marketerID });
 }
 
 async function getAllEmployees(req: Request, res: Response): Promise<void> {
-  const employee = await getEmployees();
+  const employees = await getEmployees();
 
-  res.json(employee);
+  res.json(employees);
 }
 
 async function getEmployeeData(req: Request, res: Response): Promise<void> {

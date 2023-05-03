@@ -18,7 +18,11 @@ async function addNewCrop(req: Request, res: Response): Promise<void> {
 
 async function getAllCrops(req: Request, res: Response): Promise<void> {
   const crops = await getCrops();
-  res.json(crops);
+  res.render('cropsPage', { crops });
 }
 
-export { addNewCrop, getAllCrops };
+async function renderNewCrop(req: Request, res: Response): Promise<void> {
+  res.redirect('addCrop');
+}
+
+export { addNewCrop, getAllCrops, renderNewCrop };
