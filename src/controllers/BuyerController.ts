@@ -6,7 +6,7 @@ async function addNewBuyer(req: Request, res: Response): Promise<void> {
   const { name, email, phone } = req.body as BuyerRequest;
 
   try {
-    const newBuyer = await addBuyer(name, email, phone);
+    const newBuyer = await addBuyer(name, phone, email);
     console.log(newBuyer);
     res.redirect('/buyers');
   } catch (err) {

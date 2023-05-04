@@ -7,6 +7,7 @@ import {
   addEmployee,
   getEmployees,
 } from '../models/EmployeeModel';
+import { getContractsInfo, getEmployeeContracts } from '../models/ContractModel';
 
 async function registerEmployee(req: Request, res: Response): Promise<void> {
   const { name, email, phone, password } = req.body as EmployeeRequest; // requests for a new employee
@@ -49,9 +50,16 @@ async function logIn(req: Request, res: Response): Promise<void> {
   };
 
   req.session.isLoggedIn = true;
-
-  // res.sendStatus(200); Now we can redirect to another page instead of using a generic status
-  res.render('homePage', { marketerId: employee.marketerID });
+  try {
+    const contracts = await getEmployeeContracts(employee.marketerID);
+    const contractsInfo = await getContractsInfo(employee.marketerID, contracts);
+    console.log(contracts);
+    res.render('homePage', { contractsInfo });
+  } catch (err) {
+    console.log(err);
+    const databaseErrorMessage = parseDatabaseError(err);
+    res.status(500).json(databaseErrorMessage);
+  }
 }
 
 async function getAllEmployees(req: Request, res: Response): Promise<void> {

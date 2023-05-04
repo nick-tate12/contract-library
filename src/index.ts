@@ -8,11 +8,16 @@ import {
   addNewContract,
   getAllContracts,
   getAllEntitiesForNewContract,
+  getContractsByEmployeeId,
 } from './controllers/ContractController';
-import { addNewFarmer, getAllFarmers, renderNewFarmer } from './controllers/FarmerController';
-import { addNewMill, getAllMills, renderNewMill } from './controllers/MillController';
+import {
+  addNewFarmer,
+  getAllFarmers,
+  getFarmerInfo,
+  renderNewFarmer,
+} from './controllers/FarmerController';
+import { addNewMill, getAllMills, getMillInfo, renderNewMill } from './controllers/MillController';
 import { addNewBuyer, getAllBuyers, renderNewBuyer } from './controllers/BuyerController';
-import { addNewCrop, getAllCrops, renderNewCrop } from './controllers/CropController';
 import {
   validateNewUserBody,
   validateLoginBody,
@@ -21,6 +26,7 @@ import {
   validateBuyerBody,
   validateCropBody,
 } from './Validators/authValidators';
+import { addNewCrop, getAllCrops, getCropInfo, renderNewCrop } from './controllers/CropController';
 
 const app: Express = express();
 const { PORT, COOKIE_SECRET } = process.env;
@@ -44,14 +50,19 @@ app.use(express.urlencoded({ extended: false }));
 
 // the 'user' will be 'marketers' for Delta Grain Marketing
 app.post('/api/users', validateNewUserBody, registerEmployee); // Create an account
-app.post('/home', validateLoginBody, logIn); // Log in to an account
 app.get('/api/users', getAllEmployees); // List all Marketers
+app.post('/home', validateLoginBody, logIn); // Log in to an account
+app.get('/home', getContractsByEmployeeId);
 
 app.get('/contract', getAllEntitiesForNewContract);
 app.get('/farmer', renderNewFarmer);
 app.get('/mill', renderNewMill);
 app.get('/buyer', renderNewBuyer);
 app.get('/crop', renderNewCrop);
+
+app.get('/farmer/:farmerId', getFarmerInfo);
+app.get('/mill/:millId', getMillInfo);
+app.get('/crop/:cropId', getCropInfo);
 
 app.post('/contract', addNewContract); // create new contract
 app.post('/farmers', validateFarmerBody, addNewFarmer); // create new farmer

@@ -6,8 +6,8 @@ export const cropRepository = AppDataSource.getRepository(Crop); // will be Crop
 // do not know params yet
 async function addCrop(
   name: string,
-  cropYield: number,
   price: number,
+  cropYield: number,
   status: string
 ): Promise<Crop> {
   let crop = new Crop();

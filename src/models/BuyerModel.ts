@@ -18,13 +18,7 @@ async function getBuyers(): Promise<Buyer[]> {
 }
 
 async function getBuyerById(buyerId: string): Promise<Buyer | null> {
-  const buyer = await buyerRepository.findOne({
-    select: {
-      buyerId: true,
-      email: true,
-    },
-    where: { buyerId },
-  });
+  const buyer = await buyerRepository.findOne({ where: { buyerId } });
   return buyer;
 }
 

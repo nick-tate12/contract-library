@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getMills, addMill } from '../models/MillModel';
+import { getMills, addMill, getMillById } from '../models/MillModel';
 import { parseDatabaseError } from '../utils/db-utils';
 
 async function addNewMill(req: Request, res: Response): Promise<void> {
@@ -16,6 +16,18 @@ async function addNewMill(req: Request, res: Response): Promise<void> {
   }
 }
 
+async function getMillInfo(req: Request, res: Response): Promise<void> {
+  const { millId } = req.params;
+  try {
+    const mill = await getMillById(millId);
+    res.render('millInfo', { mill });
+  } catch (err) {
+    console.error(err);
+    const databaseErrorMessage = parseDatabaseError(err);
+    res.send(500).json(databaseErrorMessage);
+  }
+}
+
 async function getAllMills(req: Request, res: Response): Promise<void> {
   const mills = await getMills();
   res.render('millsPage', { mills });
@@ -25,4 +37,4 @@ async function renderNewMill(req: Request, res: Response): Promise<void> {
   res.redirect('addMill');
 }
 
-export { addNewMill, getAllMills, renderNewMill };
+export { addNewMill, getAllMills, renderNewMill, getMillInfo };

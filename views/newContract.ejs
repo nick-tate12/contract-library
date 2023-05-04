@@ -11,7 +11,7 @@
   <header class="bg-offWhite sticky top-0">
     <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
       <div class="flex lg:flex-1">
-        <a href="/homePage" class="-m-1.5 p-1.5">
+        <a href="/home" class="-m-1.5 p-1.5">
           <span class="sr-only">Your Company</span>
           <img class="h-8 w-auto" src="./img/logo.png" alt="">
         </a>
@@ -37,35 +37,68 @@
             <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
               <div class="sm:col-span-6">
-                <label for="crop" class="block text-sm font-medium leading-6 text-mainGreen">Crop</label>
+                <label for="cropId" class="block text-sm font-medium leading-6 text-mainGreen">Crop</label>
                 <div class="mt-2">
-                  <select id="crop" name="crop" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                  <% if (crops.length >= 1) { %>
+                  <select id="cropId" name="cropId" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                     <% for ( const crop of crops ) { %>
                     <option value="<%= crop.cropId %>"><%= crop.name %></option>
                     <% } %>
                   </select>
+                  <% } else { %>
+                    <button type="button" class="relative block w-full rounded-lg border-2 border-dashed border-mainGreen p-6 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-mainGreen focus:ring-offset-2">
+                      <a href="/crop">
+                        <svg class="mx-auto h-10 w-10 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v20c0 4.418 7.163 8 16 8 1.381 0 2.721-.087 4-.252M8 14c0 4.418 7.163 8 16 8s16-3.582 16-8M8 14c0-4.418 7.163-8 16-8s16 3.582 16 8m0 0v14m0-4c0 4.418-7.163 8-16 8S8 28.418 8 24m32 10v6m0 0v6m0-6h6m-6 0h-6" />
+                        </svg>
+                        <span class="mt-2 block text-sm font-semibold text-gray-900">Create a new Crop first!</span>
+                      </a>
+                    </button>
+                  <% } %>
                 </div>
               </div>
 
               <div class="sm:col-span-6">
-                <label for="farmer" class="block text-sm font-medium leading-6 text-mainGreen">Farmer</label>
+                <label for="farmerId" class="block text-sm font-medium leading-6 text-mainGreen">Farmer</label>
                 <div class="mt-2">
-                  <select id="farmer" name="farmer" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                  <% if (farmers.length >= 1) { %>
+                  <select id="farmerId" name="farmerId" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                     <% for ( const farmer of farmers ) { %>
                     <option value="<%= farmer.farmerId %>"><%= farmer.name %></option>
                     <% } %>
                   </select>
+                  <% } else { %>
+                    <button type="button" class="relative block w-full rounded-lg border-2 border-dashed border-mainGreen p-6 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-mainGreen focus:ring-offset-2">
+                      <a href="/farmer">
+                        <svg class="mx-auto h-10 w-10 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v20c0 4.418 7.163 8 16 8 1.381 0 2.721-.087 4-.252M8 14c0 4.418 7.163 8 16 8s16-3.582 16-8M8 14c0-4.418 7.163-8 16-8s16 3.582 16 8m0 0v14m0-4c0 4.418-7.163 8-16 8S8 28.418 8 24m32 10v6m0 0v6m0-6h6m-6 0h-6" />
+                        </svg>
+                        <span class="mt-2 block text-sm font-semibold text-gray-900">Create a new Farmer first!</span>
+                      </a>
+                    </button>
+                  <% } %>
                 </div>
               </div>
 
               <div class="sm:col-span-6">
-                <label for="mill" class="block text-sm font-medium leading-6 text-mainGreen">Mill</label>
+                <label for="millId" class="block text-sm font-medium leading-6 text-mainGreen">Mill</label>
                 <div class="mt-2">
-                  <select id="mill" name="mill" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                  <% if (mills.length >= 1) { %>
+                  <select id="millId" name="millId" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                     <% for ( const mill of mills ) { %>
                     <option value="<%= mill.millId %>"><%= mill.name %></option>
                     <% } %>
                   </select>
+                  <% } else { %>
+                    <button type="button" class="relative block w-full rounded-lg border-2 border-dashed border-mainGreen p-6 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-mainGreen focus:ring-offset-2">
+                      <a href="/mill">
+                        <svg class="mx-auto h-10 w-10 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v20c0 4.418 7.163 8 16 8 1.381 0 2.721-.087 4-.252M8 14c0 4.418 7.163 8 16 8s16-3.582 16-8M8 14c0-4.418 7.163-8 16-8s16 3.582 16 8m0 0v14m0-4c0 4.418-7.163 8-16 8S8 28.418 8 24m32 10v6m0 0v6m0-6h6m-6 0h-6" />
+                        </svg>
+                        <span class="mt-2 block text-sm font-semibold text-gray-900">Create a new Mill first!</span>
+                      </a>
+                    </button>
+                  <% } %>
                 </div>
               </div>
 
@@ -73,7 +106,7 @@
           </div>
           <div class="flex items-center justify-end gap-x-6 border-t border-mainGreen px-4 py-4 sm:px-8">
             <button type="button" class="text-sm font-semibold leading-6 text-mainGreen">
-              <a href="/homePage">Cancel</a>
+              <a href="/contracts">Cancel</a>
             </button>
             <button type="submit" class="rounded-md bg-mainYellow px-3 py-2 text-sm font-semibold text-mainGreen shadow-sm hover:bg-offWhite focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mainGreen">Save</button>
           </div>
