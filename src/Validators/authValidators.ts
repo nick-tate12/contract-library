@@ -1,8 +1,8 @@
 import Joi from 'joi';
 import { makeValidator } from '../utils/makeValidator';
 
-const newUserSchema = Joi.object({
-  name: Joi.string().uppercase().required(),
+const newEmployeeSchema = Joi.object({
+  name: Joi.string().required(),
 
   email: Joi.string().email().lowercase().required(),
 
@@ -14,7 +14,7 @@ const newUserSchema = Joi.object({
   password: Joi.string().min(5).required(),
 });
 
-const validateNewUserBody = makeValidator(newUserSchema, 'body');
+const validateNewEmployeeBody = makeValidator(newEmployeeSchema, 'body');
 
 const loginSchema = Joi.object({
   email: Joi.string().email().lowercase().required(),
@@ -75,7 +75,7 @@ const cropSchema = Joi.object({
 const validateCropBody = makeValidator(cropSchema, 'body');
 
 export {
-  validateNewUserBody,
+  validateNewEmployeeBody,
   validateLoginBody,
   validateFarmerBody,
   validateMillBody,

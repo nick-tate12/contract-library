@@ -19,12 +19,12 @@ import {
 import { addNewMill, getAllMills, getMillInfo, renderNewMill } from './controllers/MillController';
 import { addNewBuyer, getAllBuyers, renderNewBuyer } from './controllers/BuyerController';
 import {
-  validateNewUserBody,
   validateLoginBody,
   validateFarmerBody,
   validateMillBody,
   validateBuyerBody,
   validateCropBody,
+  validateNewEmployeeBody,
 } from './Validators/authValidators';
 import { addNewCrop, getAllCrops, getCropInfo, renderNewCrop } from './controllers/CropController';
 
@@ -49,7 +49,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // the 'user' will be 'marketers' for Delta Grain Marketing
-app.post('/api/users', validateNewUserBody, registerEmployee); // Create an account
+app.post('/api/users', validateNewEmployeeBody, registerEmployee); // Create an account
 app.get('/api/users', getAllEmployees); // List all Marketers
 app.post('/home', validateLoginBody, logIn); // Log in to an account
 app.get('/home', getContractsByEmployeeId);
