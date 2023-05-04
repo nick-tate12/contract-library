@@ -8,7 +8,7 @@ async function addNewBuyer(req: Request, res: Response): Promise<void> {
   try {
     const newBuyer = await addBuyer(name, email, phone);
     console.log(newBuyer);
-    res.sendStatus(201);
+    res.redirect('/mills');
   } catch (err) {
     console.error(err);
     const databaseErrorMessage = parseDatabaseError(err);

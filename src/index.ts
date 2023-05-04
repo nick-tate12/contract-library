@@ -13,6 +13,7 @@ import { addNewFarmer, getAllFarmers, renderNewFarmer } from './controllers/Farm
 import { addNewMill, getAllMills, renderNewMill } from './controllers/MillController';
 import { addNewBuyer, getAllBuyers, renderNewBuyer } from './controllers/BuyerController';
 import { addNewCrop, getAllCrops, renderNewCrop } from './controllers/CropController';
+import { validateNewUserBody, validateLoginBody } from './Validators/authValidators';
 
 const app: Express = express();
 const { PORT, COOKIE_SECRET } = process.env;
@@ -35,8 +36,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // the 'user' will be 'marketers' for Delta Grain Marketing
-app.post('/api/users', registerEmployee); // Create an account
-app.post('/home', logIn); // Log in to an account
+app.post('/api/users', validateNewUserBody, registerEmployee); // Create an account
+app.post('/home', validateLoginBody, logIn); // Log in to an account
 app.get('/api/users', getAllEmployees); // List all Marketers
 
 app.get('/contract', getAllEntitiesForNewContract);
@@ -46,10 +47,10 @@ app.get('/buyer', renderNewBuyer);
 app.get('/crop', renderNewCrop);
 
 app.post('/contract', addNewContract); // create new contract
-app.post('/farmer', addNewFarmer); // create new farmer
-app.post('/mill', addNewMill); // create new farmer
-app.post('/buyer', addNewBuyer); // create new buyer
-app.post('/crop', addNewCrop); // create new crop (includes Rice)
+app.post('/farmers', addNewFarmer); // create new farmer
+app.post('/mills', addNewMill); // create new farmer
+app.post('/buyers', addNewBuyer); // create new buyer
+app.post('/crops', addNewCrop); // create new crop (includes Rice)
 
 app.get('/contracts', getAllContracts); // List of contracts
 app.get('/farmers', getAllFarmers); // List of all farmers + personal info

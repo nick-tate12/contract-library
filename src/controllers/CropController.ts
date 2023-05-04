@@ -8,7 +8,7 @@ async function addNewCrop(req: Request, res: Response): Promise<void> {
   try {
     const newCrop = await addCrop(name, price, cropYield, status);
     console.log(newCrop);
-    res.sendStatus(201);
+    res.redirect('/crops');
   } catch (err) {
     console.error(err);
     const databaseErrorMessage = parseDatabaseError(err);

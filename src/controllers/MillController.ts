@@ -8,7 +8,7 @@ async function addNewMill(req: Request, res: Response): Promise<void> {
   try {
     const newMill = await addMill(name, phone, email);
     console.log(newMill);
-    res.sendStatus(201);
+    res.redirect('/mills');
   } catch (err) {
     console.error(err);
     const databaseErrorMessage = parseDatabaseError(err);
