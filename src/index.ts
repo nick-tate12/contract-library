@@ -13,7 +13,14 @@ import { addNewFarmer, getAllFarmers, renderNewFarmer } from './controllers/Farm
 import { addNewMill, getAllMills, renderNewMill } from './controllers/MillController';
 import { addNewBuyer, getAllBuyers, renderNewBuyer } from './controllers/BuyerController';
 import { addNewCrop, getAllCrops, renderNewCrop } from './controllers/CropController';
-import { validateNewUserBody, validateLoginBody } from './Validators/authValidators';
+import {
+  validateNewUserBody,
+  validateLoginBody,
+  validateFarmerBody,
+  validateMillBody,
+  validateBuyerBody,
+  validateCropBody,
+} from './Validators/authValidators';
 
 const app: Express = express();
 const { PORT, COOKIE_SECRET } = process.env;
@@ -47,10 +54,10 @@ app.get('/buyer', renderNewBuyer);
 app.get('/crop', renderNewCrop);
 
 app.post('/contract', addNewContract); // create new contract
-app.post('/farmers', addNewFarmer); // create new farmer
-app.post('/mills', addNewMill); // create new farmer
-app.post('/buyers', addNewBuyer); // create new buyer
-app.post('/crops', addNewCrop); // create new crop (includes Rice)
+app.post('/farmers', validateFarmerBody, addNewFarmer); // create new farmer
+app.post('/mills', validateMillBody, addNewMill); // create new farmer
+app.post('/buyers', validateBuyerBody, addNewBuyer); // create new buyer
+app.post('/crops', validateCropBody, addNewCrop); // create new crop (includes Rice)
 
 app.get('/contracts', getAllContracts); // List of contracts
 app.get('/farmers', getAllFarmers); // List of all farmers + personal info
